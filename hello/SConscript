@@ -1,0 +1,13 @@
+# 從專案輸入設定
+Import('env')
+
+envHello = env.Clone()
+
+envHello.VariantDir('build', ['.'], duplicate = 0)
+
+# hello executable
+libHello = envHello.Program('hello', 'build/hello.m', FRAMEWORKS=['Foundation'])
+
+# 安裝程式到輸出目錄
+envHello.Install('#out', libHello)
+envHello.Alias('install','#out')
